@@ -1,3 +1,5 @@
+trigger: none
+
 name: Deploy webVM from snapshot
 variables:
   azureServiceConnection: 'DevOps2Azure'
