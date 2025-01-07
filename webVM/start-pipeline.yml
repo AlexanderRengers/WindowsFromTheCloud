@@ -1,0 +1,15 @@
+name: Deploy webVM from snapshot
+
+  azureServiceConnection: 'DevOps2Azure'
+  templateFile: 'webVM/main.bicep'
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az deployment group create -g webVM.rg --name deploy webVM --template-file $(templateFile)
