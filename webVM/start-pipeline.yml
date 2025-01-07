@@ -1,5 +1,5 @@
 name: Deploy webVM from snapshot
-
+variables:
   azureServiceConnection: 'DevOps2Azure'
   templateFile: 'webVM/main.bicep'
 pool:
