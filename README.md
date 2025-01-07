@@ -14,7 +14,7 @@ I thought it cheaper to spin up a vm in Azure on a pay-per-use basis.
 - An iPad as client and to run a shortcut to start the VM
 - A client device to run [Parsec](https://parsec.app/downloads) for low latency game streaming
 
-#Setup
+# Setup
 ## WebVM
 ## Initial Setup
 1. Create a resource group named `webVM.rg`
