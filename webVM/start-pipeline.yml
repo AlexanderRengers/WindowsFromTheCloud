@@ -3,7 +3,7 @@ trigger: none
 name: Deploy webVM from snapshot
 variables:
   azureServiceConnection: 'DevOps2Azure'
-  templateFile: 'webVM/main.bicep'
+  templateFile: 'webVM/$(templateFileName)'
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -14,4 +14,4 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      az deployment group create -g webVM.rg --name deployWebVM --template-file $(TEMPLATEFILENAME)
+      az deployment group create -g webVM.rg --name deployWebVM --template-file $(templateFile)
