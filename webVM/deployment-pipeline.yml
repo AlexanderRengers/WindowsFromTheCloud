@@ -14,4 +14,4 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      az deployment group create -g webVM.rg --name deployWebVM --template-file $(templateFile)
+      az deployment group create -g webVM.rg --name deployWebVM --template-file $(templateFile) --mode Complete
