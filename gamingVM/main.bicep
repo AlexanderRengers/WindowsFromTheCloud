@@ -5,6 +5,7 @@ module virtualMachine '../webVM/main.bicep' = {
   params: {
     vmName: 'gamingVM'
     vmSize: 'Standard_NV12ads_A10_v5'
+    snapshotRgName: resourceGroup().name
     snapshotName: snapshotName
   }
 }
