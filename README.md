@@ -14,8 +14,7 @@ I thought it cheaper to spin up a vm in Azure on a pay-per-use basis.
 - An iPad as client and to run a shortcut to start the VM
 - A client device to run [Parsec](https://parsec.app/downloads) for low latency game streaming
 
-# Setup
-## WebVM
+# Setup WebVM
 ## Initial Setup
 1. Create a resource group named `webVM.rg`
 2. Create a resource group name `snapshot.rg`
@@ -45,7 +44,7 @@ The runbooks are executed with a Azure Automation Account.
 - You need to create a personal access token with Build - read & execute rights.
 - You find the definitionId of your devops pipeline in the URL in your browser if you have the pipeline open.
 
-### Setup
+### Automation Account Setup
 1. Create a resource group `automation-rg` 
 2. Create a Azure Automation Account
 3. Create two runbooks with the provided `.ps1` files.
@@ -65,13 +64,16 @@ The action group is refernced in the vm deployment `main.bicep`
 
 So after one hour the vm basically self-destroys.
 
-## Gaming VM (GPU)
-### Goal
+## Shrink OS Disk to save costs
+See following [instructions](https://www.linkedin.com/pulse/shrink-azure-vms-os-managed-disk-using-powershell-vikram-s-solanki/) to shrink the os disk size to a smaller size.
+
+# Gaming VM (GPU) Setup
+## Goal
 I want a vm with Nvidia GPU to install games on and stream it to my (thin) client. In comparison to cloud gaming services (e.g. GeforeceNow) there are two advantages:
 - 1 hour playing costs about 1,60 € compared to GeforceNow if you play less than 7 hours (say just one weekend) its cheaper.
 - Most importantly: not every game is available on GeforceNow
 
-### Initial Setup
+## Initial Setup
 1. Create a resource group `gamingVM.rg`
 2. Create a vm with 
     - Windows 11 Pro
@@ -82,7 +84,14 @@ I want a vm with Nvidia GPU to install games on and stream it to my (thin) clien
 6. Install Steam and one game
 7. Connect via parsec and check everything works
 8. Disconnect and shutdown the vm
-9. Create a snapshot from the vm in the `snapshots-rg`
-10. Deploy the vm again using the deployment pipeline, and set the snapshot resourceId manually
+9. Create a snapshot from the vm named `snapshotcli-initial`
+10. Deploy the vm again using the deployment pipeline.
+11. Delete the vm with the delete pipeline, which deletes all resources and creates a snapshot of the current vm disk.
 
-### Pipeline Setup
+## Pipeline Setup
+1. Create a deployment pipeline 
+   - `gamingVM/deploy-vm-pipeline.yml`
+   - variables: `resourceGroup=gamingVm.rg` and `templateFilePath=gamingVM/main.bicep`
+2. Create a deployment pipeline for deleting and snapshot creation
+   - reusing the `webVM/deployment-pipeline.yml`
+   - variables: `resourceGroup=gamingVm.rg` and `templateFilePath=gamingVM/delete.bicep`
