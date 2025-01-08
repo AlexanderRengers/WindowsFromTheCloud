@@ -1,9 +1,11 @@
+param snapshotName string
+
 module virtualMachine '../webVM/main.bicep' = {
   name: 'gamingVM'
   params: {
     vmName: 'gamingVM'
     vmSize: 'Standard_NV12ads_A10_v5'
-    snapshotName: 'gamingSnapshot'
+    snapshotName: snapshotName
   }
 }
 
@@ -22,3 +24,4 @@ resource gpuExtension 'Microsoft.Compute/virtualMachines/extensions@2022-08-01' 
     autoUpgradeMinorVersion: true
   }
 }
+

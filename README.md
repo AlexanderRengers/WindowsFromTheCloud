@@ -71,5 +71,18 @@ I want a vm with Nvidia GPU to install games on and stream it to my (thin) clien
 - 1 hour playing costs about 1,60 € compared to GeforceNow if you play less than 7 hours (say just one weekend) its cheaper.
 - Most importantly: not every game is available on GeforceNow
 
-### Setup
+### Initial Setup
+1. Create a resource group `gamingVM.rg`
+2. Create a vm with 
+    - Windows 11 Pro
+    - Size: Standard_NV12ads_A10_v5
+3. Connect via RDP to your vm
+4. Install [Parsecs Cloud Preparation Tools](https://github.com/parsec-cloud/Parsec-Cloud-Preparation-Tool)
+5. Install a [virtual audio driver](https://vb-audio.com/Cable/)
+6. Install Steam and one game
+7. Connect via parsec and check everything works
+8. Disconnect and shutdown the vm
+9. Create a snapshot from the vm in the `snapshots-rg`
+10. Deploy the vm again using the deployment pipeline, and set the snapshot resourceId manually
 
+### Pipeline Setup

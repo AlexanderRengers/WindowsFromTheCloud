@@ -1,0 +1,16 @@
+trigger: none
+
+name: Deploy VM from snapshot
+variables:
+  azureServiceConnection: 'DevOps2Azure'
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az deployment group create -g $(resourceGroup) --name deployWebVM --template-file $(templateFilePath) --mode Complete
