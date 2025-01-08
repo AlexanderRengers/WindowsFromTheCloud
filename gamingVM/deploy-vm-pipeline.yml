@@ -14,4 +14,4 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       snapshotName=$(az snapshot list --query "[?contains(name, 'gaming')].name" -o tsv)
-      az deployment group create -g $(resourceGroup) --name deployWebVM --template-file $(templateFilePath) --parameters snapshotName=$snapshotName
+      az deployment group create -g $(resourceGroup) --name deployWebVM --template-file $(templateFilePath) --parameters snapshotName=$snapshotName --mode Complete
