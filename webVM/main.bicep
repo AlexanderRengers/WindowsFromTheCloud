@@ -164,7 +164,7 @@ resource activitylogalerts_Alert_on_VM_shutdown_deallocate 'microsoft.insights/a
     actions: {
       actionGroups: [
         {
-          actionGroupId: '/subscriptions/3969faee-df3c-4071-99fe-d4daf6042b96/resourceGroups/automation-rg/providers/microsoft.insights/actiongroups/vm_ag'
+          actionGroupId: '/subscriptions/<your-subscription-id>/resourceGroups/automation-rg/providers/microsoft.insights/actiongroups/vm_ag'
           webhookProperties: {}
         }
       ]
