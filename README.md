@@ -52,8 +52,9 @@ The runbooks are executed with a Azure Automation Account.
 4. Create a webhook for each runbook.
 5. Crate a action group that runs the shutdown runbook upon alert
 6. Create two iOS shortcuts:
-![alt text](images/startup_shortcut.jpg)
-![alt text](images/startup_shortcut.jpg)
+
+<img src="images/startup_shortcut.jpg" alt="Alt Text" width="50%">
+<img src="images/shutdown_shortcut.jpg" alt="Alt Text" width="50%">
 
 ## Auto-shutdown after 1 hour
 ### Goal
@@ -64,6 +65,11 @@ The action group is refernced in the vm deployment `main.bicep`
 
 So after one hour the vm basically self-destroys.
 
-
-
 ## Gaming VM (GPU)
+### Goal
+I want a vm with Nvidia GPU to install games on and stream it to my (thin) client. In comparison to cloud gaming services (e.g. GeforeceNow) there are two advantages:
+- 1 hour playing costs about 1,60 € compared to GeforceNow if you play less than 7 hours (say just one weekend) its cheaper.
+- Most importantly: not every game is available on GeforceNow
+
+### Setup
+

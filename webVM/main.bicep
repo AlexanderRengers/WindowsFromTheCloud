@@ -3,7 +3,8 @@ param location string = resourceGroup().location
 var shutdownTime = dateTimeAdd(baseTime, 'PT1H', 'HHmm')
 param snapshotName string = 'personalVMsnapshot'
 param snapshotRgName string = 'snapshot-rg'
-var vmName = 'webVM'
+param vmName string = 'webVM'
+param vmSize string = 'Standard_B4ms'
 
 resource existingSnapshot 'Microsoft.Compute/snapshots@2023-03-01' existing = {
   name: snapshotName
@@ -80,7 +81,7 @@ resource webVM 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: vmName
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_B4ms'
+      vmSize: vmSize
     }
     storageProfile: {
       osDisk: {
