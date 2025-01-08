@@ -1,10 +1,9 @@
 param snapshotName string = 'snapshotcli-${utcNow()}'
-param disks_osDiskFromSnapshot_externalid string
-param location string
+param disks_osDiskFromSnapshot_externalid string = 'gamingOsDisk'
 
 resource snapshot 'Microsoft.Compute/snapshots@2022-03-02' = {
   name: snapshotName
-  location: location
+  location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
   }
@@ -18,5 +17,3 @@ resource snapshot 'Microsoft.Compute/snapshots@2022-03-02' = {
     publicNetworkAccess: 'Enabled'
   }
 }
-
-output snapshotName string = snapshot.id
