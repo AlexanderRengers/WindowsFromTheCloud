@@ -1,5 +1,7 @@
 # WindowsFromTheCloud
-A cloud pc on my iPad, spinning up with the touch of a button.
+A cloud pc on my iPad, spinning up with the touch of a button and deletes itself automatically after 1 hour to save costs.
+
+<img src="images/overview.png" alt="Alt Text" width="50%">
 
 # Goal
 I want my iPad to replace my private laptop. As I don't often need a private laptop and when only for 
